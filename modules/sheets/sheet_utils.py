@@ -85,8 +85,7 @@ def get_sheet(search_ids : list[int]):
     # Search DB for the sheet tether, if there is one
     with Session(database.DATABASE_ENGINE) as session:
         for curr_id, curr_index in enumerate(search_ids):
-            #TODO: does the id need to be converted to str?
-            result = session.query(database.SheetTethers).filter_by(channel_or_cat_id=str(curr_id)).first()
+            result = session.query(database.SheetTethers).filter_by(channel_or_cat_id=curr_id).first()
             if result is not None:
                 return result, curr_index
 
